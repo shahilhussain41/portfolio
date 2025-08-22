@@ -1,23 +1,23 @@
-import streamlit as st
-import os
+import streamlit as st  # Import Streamlit library for building web apps
+import os  # Import OS library for file operations
 
 # --- Page Configuration ---
-st.set_page_config(
-    page_title="Shah Nawaz Hussain | Cloud DevOps Portfolio",
-    layout="wide",
-    page_icon="💻"
+st.set_page_config(  # Set Streamlit page configuration
+    page_title="Shah Nawaz Hussain | Cloud DevOps Portfolio",  # Set browser tab title
+    layout="wide",  # Use wide layout for the page
+    page_icon="💻"  # Set page icon
 )
 
 # --- Sidebar Navigation ---
 # Display profile image safely (updated to teams(2).jpg)
-profile_image_path = "profile.png"
+profile_image_path = "profile.png"  # Path to profile image
 try:
-    st.sidebar.image(profile_image_path, width=120)
+    st.sidebar.image(profile_image_path, width=120)  # Show profile image in sidebar
 except FileNotFoundError:
-    st.sidebar.warning(f"Profile image '{profile_image_path}' not found.")
+    st.sidebar.warning(f"Profile image '{profile_image_path}' not found.")  # Warn if image not found
 
 # Navigation menu
-menu = [
+menu = [  # List of navigation options
     "About Me",
     "Experience",
     "Projects",
@@ -26,13 +26,13 @@ menu = [
     "Achievements",
     "Contact"
 ]
-choice = st.sidebar.radio("Navigation", menu)
+choice = st.sidebar.radio("Navigation", menu)  # Sidebar radio button for navigation
 
 # --- Helper Functions ---
-def show_about():
-    st.title("👨‍💻 Shah Nawaz Hussain")
-    st.subheader("Cloud Automation & DevOps Engineer | AWS | Terraform | CI/CD")
-    st.markdown("""
+def show_about():  # Function to show About Me section
+    st.title("👨‍💻 Shah Nawaz Hussain")  # Display title
+    st.subheader("Cloud Automation & DevOps Engineer | AWS | Terraform | CI/CD")  # Display subheader
+    st.markdown("""  # Display markdown content
 Cloud Automation and DevOps Engineer with **3.11 years of experience** in AWS infrastructure, Terraform (IaC),
 and CI/CD implementation.
 
@@ -41,11 +41,11 @@ and CI/CD implementation.
 - Hands-on expertise in **Lambda automation, Prometheus-Grafana monitoring**, and building secure architecture aligned with the AWS Well-Architected Framework.
 """)
 
-def show_experience():
-    st.header("💼 Work Experience")
-    st.subheader("Accenture Solutions Pvt. Ltd. | Cloud DevOps Engineer")
-    st.write("📍 Bengaluru | Dec 2021 - Present")
-    st.markdown("""
+def show_experience():  # Function to show Experience section
+    st.header("💼 Work Experience")  # Display header
+    st.subheader("Accenture Solutions Pvt. Ltd. | Cloud DevOps Engineer")  # Display subheader
+    st.write("📍 Bengaluru | Dec 2021 - Present")  # Display location and duration
+    st.markdown("""  # Display markdown content
 - Reduced deployment time by **30%** by developing and optimizing CI/CD pipelines using AWS CodeCommit, CodeBuild, CodeDeploy, and CodePipeline.
 - Created & managed **200+ IAM users, groups, policies, roles** via Terraform (IaC).
 - Automated IAM compliance for **100+ AWS accounts** via Lambda, reducing non-compliance by **60%**.
@@ -55,35 +55,35 @@ def show_experience():
 - Configured **NACL rules** across 10+ VPC subnets using Terraform.
 """)
 
-def show_projects():
-    st.header("🚀 Projects")
-    with st.expander("1. AWS Architecture for 3-Tier Web Hosting", expanded=True):
-        st.markdown("""
+def show_projects():  # Function to show Projects section
+    st.header("🚀 Projects")  # Display header
+    with st.expander("1. AWS Architecture for 3-Tier Web Hosting", expanded=True):  # Expandable project section
+        st.markdown("""  # Display markdown content
 - Designed a **scalable 3-Tier architecture** (frontend, backend, DB) on AWS.
 - Automated with **Terraform**.
 - Used **NAT Gateway, Auto Scaling Groups, and ALB** for high availability.
 - Integrated **CloudWatch alarms** for proactive monitoring.
 """)
-    with st.expander("2. Automated Cost Optimization System", expanded=True):
-        st.markdown("""
+    with st.expander("2. Automated Cost Optimization System", expanded=True):  # Expandable project section
+        st.markdown("""  # Display markdown content
 - Built an **AWS Lambda-based monitoring solution** integrated with CloudWatch.
 - Identified underutilized EC2/RDS instances and automated shutdown schedules.
 - Saved **$1,200 monthly** by enforcing autoscaling and off-peak shutdowns.
 """)
 
-def show_skills():
-    st.header("🛠️ Skills & Certifications")
-    col1, col2 = st.columns(2)
+def show_skills():  # Function to show Skills & Certifications section
+    st.header("🛠️ Skills & Certifications")  # Display header
+    col1, col2 = st.columns(2)  # Create two columns
     with col1:
-        st.markdown("**Certifications**")
-        st.markdown("""
+        st.markdown("**Certifications**")  # Display certifications header
+        st.markdown("""  # Display markdown content
 - AWS Certified Cloud Practitioner
 - AWS Certified Solutions Architect – Associate
 - HashiCorp Certified: Terraform Associate (003)
 """)
     with col2:
-        st.markdown("**Skills**")
-        st.markdown("""
+        st.markdown("**Skills**")  # Display skills header
+        st.markdown("""  # Display markdown content
 - **Cloud Platforms**: AWS
 - **CI/CD Tools**: CodePipeline, Jenkins
 - **IaC**: Terraform, CloudFormation
@@ -95,36 +95,36 @@ def show_skills():
 - **Others**: Git, Bitbucket, JIRA, ServiceNow
 """)
 
-def show_education():
-    st.header("🎓 Education")
-    st.markdown("""
+def show_education():  # Function to show Education section
+    st.header("🎓 Education")  # Display header
+    st.markdown("""  # Display markdown content
 **Dayananda Sagar College of Engineering (2017 - 2021)**
 - Bachelor of Engineering (Mechanical Engineering)
 """)
 
-def show_achievements():
-    st.header("🏆 Achievements")
-    st.markdown("""
+def show_achievements():  # Function to show Achievements section
+    st.header("🏆 Achievements")  # Display header
+    st.markdown("""  # Display markdown content
 - **CDP Award** – For best practices in client data protection during project implementation.
 - Recognized by senior leadership for **automating IAM compliance workflows** impacting 100+ accounts.
 """)
 
-def show_contact():
-    st.header("📬 Contact Me")
-    st.write("📧 Email: shahilhussain41@gmail.com")
-    st.write("📱 Phone: +91 9101144633")
-    st.markdown("[💼 LinkedIn](https://www.linkedin.com/in/shah-nawaz-hussain-185b391b2/)")
-    st.markdown("[💻 GitHub](https://github.com/shahilhussain41)")
+def show_contact():  # Function to show Contact section
+    st.header("📬 Contact Me")  # Display header
+    st.write("📧 Email: shahilhussain41@gmail.com")  # Display email
+    st.write("📱 Phone: +91 9101144633")  # Display phone
+    st.markdown("[💼 LinkedIn](https://www.linkedin.com/in/shah-nawaz-hussain-185b391b2/)")  # LinkedIn link
+    st.markdown("[💻 GitHub](https://github.com/shahilhussain41)")  # GitHub link
 
-    resume_path = "Shah_Nawaz_Hussain_Resume.pdf"
+    resume_path = "Shah_Nawaz_Hussain_Resume.pdf"  # Path to resume PDF
     try:
-        with open(resume_path, "rb") as pdf_file:
-            st.download_button("📄 Download Resume", pdf_file, resume_path)
+        with open(resume_path, "rb") as pdf_file:  # Open resume file in binary mode
+            st.download_button("📄 Download Resume", pdf_file, resume_path)  # Download button for resume
     except FileNotFoundError:
-        st.warning("Resume file not found.")
+        st.warning("Resume file not found.")  # Warn if resume not found
 
 # --- Main Content ---
-pages = {
+pages = {  # Dictionary mapping menu choices to functions
     "About Me": show_about,
     "Experience": show_experience,
     "Projects": show_projects,
@@ -133,4 +133,4 @@ pages = {
     "Achievements": show_achievements,
     "Contact": show_contact
 }
-pages.get(choice, show_about)()
+pages.get(choice, show_about)()  # Call the selected page function, default to show_about
