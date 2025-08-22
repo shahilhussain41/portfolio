@@ -10,7 +10,7 @@ st.set_page_config(
 
 # --- Sidebar Navigation ---
 # Display profile image safely (updated to teams(2).jpg)
-profile_image_path = "E:\\Portfolio\\portfolio\\teams (2).jpg"
+profile_image_path = "profile.png"
 try:
     st.sidebar.image(profile_image_path, width=120)
 except FileNotFoundError:
