@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from PIL import Image, ImageOps
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -11,7 +12,16 @@ st.set_page_config(
 # --- Sidebar Navigation ---
 profile_image_path = "profile.png"
 try:
-    st.sidebar.image(profile_image_path, width=120)
+    img = Image.open(profile_image_path)
+    # Make image round
+    size = (min(img.size),) * 2
+    mask = Image.new('L', size, 0)
+    ImageDraw = ImageDraw if 'ImageDraw' in globals() else __import__('PIL.ImageDraw').ImageDraw
+    draw = ImageDraw.Draw(mask)
+    draw.ellipse((0, 0) + size, fill=255)
+    img = ImageOps.fit(img, size, centering=(0.5, 0.5))
+    img.putalpha(mask)
+    st.sidebar.image(img, width=120)
 except FileNotFoundError:
     st.sidebar.warning(f"Profile image '{profile_image_path}' not found.")
 
