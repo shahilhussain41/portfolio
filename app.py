@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -8,11 +9,12 @@ st.set_page_config(
 )
 
 # --- Sidebar Navigation ---
-# Display profile image safely
+# Display profile image safely (updated to teams(2).jpg)
+profile_image_path = "E:\\Portfolio\\portfolio\\teams (2).jpg"
 try:
-    st.sidebar.image("profile.jpg", width=120)
+    st.sidebar.image(profile_image_path, width=120)
 except FileNotFoundError:
-    st.sidebar.warning("Profile image not found.")
+    st.sidebar.warning(f"Profile image '{profile_image_path}' not found.")
 
 # Navigation menu
 menu = [
@@ -24,7 +26,6 @@ menu = [
     "Achievements",
     "Contact"
 ]
-
 choice = st.sidebar.radio("Navigation", menu)
 
 # --- Helper Functions ---
@@ -123,18 +124,13 @@ def show_contact():
         st.warning("Resume file not found.")
 
 # --- Main Content ---
-if choice == "About Me":
-    show_about()
-elif choice == "Experience":
-    show_experience()
-elif choice == "Projects":
-    show_projects()
-elif choice == "Skills & Certifications":
-    show_skills()
-elif choice == "Education":
-    show_education()
-elif choice == "Achievements":
-    show_achievements()
-elif choice == "Contact":
-    show_contact()
-
+pages = {
+    "About Me": show_about,
+    "Experience": show_experience,
+    "Projects": show_projects,
+    "Skills & Certifications": show_skills,
+    "Education": show_education,
+    "Achievements": show_achievements,
+    "Contact": show_contact
+}
+pages.get(choice, show_about)()
