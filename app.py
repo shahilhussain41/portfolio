@@ -116,7 +116,15 @@ with menu[5]:  # Sixth tab: Achievements
 with menu[6]:  # Seventh tab: Resume
     st.subheader("📑 Resume")  # Section header
     resume_path = "Shah_Nawaz_Hussain_Resume.pdf"  # Path to resume file
-    st.markdown(f"👉 [Download My Resume]({resume_path})")  # Download link for resume
+    with open(resume_path, "rb") as f:
+        resume_bytes = f.read()
+    st.download_button(
+        label="👉 Download My Resume",
+        data=resume_bytes,
+        file_name="Shah_Nawaz_Hussain_Resume.pdf",
+        mime="application/pdf"
+    )
+
 
 # --- CONTACT ---
 with menu[7]:  # Eighth tab: Contact
